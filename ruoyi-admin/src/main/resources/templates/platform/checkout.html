@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>城乡产业交流平台</title><!--=== Favicon ===-->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"><!--=== All Plugins CSS ===-->
+    <link href="/static/css/plugins.css" rel="stylesheet"><!--=== All Vendor CSS ===-->
+    <link href="/static/css/vendor.css" rel="stylesheet"><!--=== Main Style CSS ===-->
+    <link href="/static/css/style.css" rel="stylesheet"><!-- Modernizer JS -->
+    <script src="/static/js/modernizr-2.8.3.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/static/js/html5shiv.min.js"></script>
+    <script src="/static/js/respond.min.js"></script><![endif]--></head>
+<body><!-- Start Header Area -->
+<header class="header-area"><!-- header top start -->
+    <div th:replace="~{platform/common::header-top}"></div>
+
+    <!-- header top end --><!-- main menu start -->
+    <div class="main-menu-area sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main-menu">
+                        <div class="sticky-logo"><a href="index.html"><img src="/static/logo.png" alt="brand logo" style="height: 70px"
+                                                                           ></a></div>
+                        <!-- main menu navbar start -->
+                        <div th:replace="platform/common::mobile-menu"></div>
+
+                        <!-- main menu navbar end --></div>
+                </div>
+                <div class="col-12 d-block d-lg-none">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- main menu end --></header><!-- end Header Area --><!-- main wrapper start -->
+<main><!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb"><h2>shop</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">checkout</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- breadcrumb area end --><!-- checkout main wrapper start -->
+    <div class="checkout-page-wrapper pt-60 pb-54">
+        <div class="container">
+            <div class="row"><!-- Checkout Billing Details -->
+                <div class="col-lg-6">
+                    <div class="checkout-billing-details-wrap"><h2>收获地址</h2>
+                        <div class="billing-form-wrap">
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="single-input-item"><label for="f_name" class="required">姓名
+                                            Name</label><input type="text" id="f_name" placeholder="姓名" >
+                                        </div>
+                                    </div>
+<!--                                    <div class="col-md-6">-->
+<!--                                        <div class="single-input-item"><label for="l_name" class="required">Last-->
+<!--                                            Name</label><input type="text" id="l_name" placeholder="Last Name" required/="">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                                <div class="single-input-item"><label for="email" class="required">详细地址</label><input
+                                         id="email" placeholder="详细地址" >
+                                </div>
+                                <div class="single-input-item"><label for="phone">联系电话</label><input type="text"
+                                                                                                      id="phone"
+                                                                                                      placeholder="联系电话">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- Order Summary Details -->
+                <div class="col-lg-6">
+                    <div class="order-summary-details mt-md-50 mt-sm-50"><h2>订单</h2>
+                        <div class="order-summary-content"><!-- Order Summary Table -->
+                            <div class="order-summary-table table-responsive text-center">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>产品</th>
+                                        <th>合计</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="pro:${products}">
+                                        <td><a href="single-product.html" th:href="@{/productdetail/{id}(id=${pro.id})}" >[[${pro.name}]]<strong>× [[${pro.getCount()}]]</strong></a>
+                                        </td>
+                                        <td>[[${pro.price}]]</td>
+                                        <td class="none" style="display: none">[[${pro.getId()}]]</td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+
+                                    <tr>
+                                        <td>总计</td>
+                                        <td><strong>$[[${total}]]</strong></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div><!-- Order Payment Method -->
+                            <div class="order-payment-method">
+                                <div class="summary-footer-area" style="text-align: center">
+                                    <button type="submit" class="btn btn__bg">结账</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- checkout main wrapper end --></main><!-- main wrapper end --><!--== Start Footer Area Wrapper ==-->
+<div class="scroll-top not-visible"><i class="fa fa-angle-up"></i></div><!-- Scroll to Top End -->
+<!--=======================Javascript============================--><!--=== All Vendor Js ===-->
+<script src="/static/js/vendor.js"></script><!--=== All Plugins Js ===-->
+<script src="/static/js/plugins.js"></script><!--=== Active Js ===-->
+<script src="/static/js/active.js"></script>
+<script>
+    function sendDataToBackend() {
+        // 获取姓名
+        var name = document.getElementById("f_name").value;
+
+        // 获取详细地址
+        var address = document.getElementById("email").value;
+
+        // 获取联系电话
+        var phone = document.getElementById("phone").value;
+
+        // 获取所有产品行
+        var productRows = document.querySelectorAll(".order-summary-table tbody tr");
+
+        // 创建一个空数组来存储产品信息
+        var products = [];
+
+        // 遍历每个产品行
+        productRows.forEach(function(row) {
+            // 获取产品名称和数量
+            var productName = row.querySelector("td a").textContent.trim();
+            var productQuantity = parseInt(row.querySelector("td a strong").textContent);
+            var productId = row.querySelector("td.none").textContent.trim(); // 获取隐藏的单元格中的产品ID
+
+            // 将产品信息添加到数组中
+            products.push({
+                id: productId, // 将产品ID添加到产品信息对象中
+                name: productName,
+                quantity: productQuantity
+            });
+        });
+
+        // 构建要发送的数据对象
+        var data = {
+            name: name,
+            address: address,
+            phone: phone,
+            products: products
+        };
+
+        // 发送数据到后台的示例请求
+        // 替换为你的后台接收数据的API地址和请求方法
+        $.ajax({
+            type: "POST",
+            url: "/orderpost",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function(response) {
+                // 请求成功处理
+                window.location.href = '/cart'
+
+            },
+            error: function(xhr, status, error) {
+                // 请求失败处理
+                console.error("Error sending data: " + error);
+            }
+        });
+
+    }
+    $(document).ready(function() {
+        $(".btn__bg").click(function(event) {
+            // 阻止按钮默认的提交行为
+            event.preventDefault();
+
+            // 调用发送数据到后台的函数
+            sendDataToBackend();
+        });
+    });
+
+</script>
+</body>
+</html>

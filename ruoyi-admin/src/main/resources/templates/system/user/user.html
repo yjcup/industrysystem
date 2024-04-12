@@ -5,25 +5,25 @@
 	<th:block th:include="include :: layout-latest-css" />
 	<th:block th:include="include :: ztree-css" />
 </head>
-<body class="gray-bg">
-	<div class="ui-layout-west">
-		<div class="box box-main">
-			<div class="box-header">
-				<div class="box-title">
-					<i class="fa fa-sitemap"></i> 组织机构
-				</div>
-				<div class="box-tools pull-right">
-				    <a type="button" class="btn btn-box-tool" href="javascript:void(0)" onclick="dept()" title="管理部门"><i class="fa fa-edit"></i></a>
-					<button type="button" class="btn btn-box-tool" id="btnExpand" title="展开" style="display:none;"><i class="fa fa-chevron-up"></i></button>
-					<button type="button" class="btn btn-box-tool" id="btnCollapse" title="折叠"><i class="fa fa-chevron-down"></i></button>
-					<button type="button" class="btn btn-box-tool" id="btnRefresh" title="刷新部门"><i class="fa fa-refresh"></i></button>
-				</div>
-			</div>
-			<div class="ui-layout-content">
-				<div id="tree" class="ztree"></div>
-			</div>
-		</div>
-	</div>
+<!--<body class="gray-bg">-->
+<!--	<div class="ui-layout-west">-->
+<!--		<div class="box box-main">-->
+<!--			<div class="box-header">-->
+<!--				<div class="box-title">-->
+<!--					<i class="fa fa-sitemap"></i> 组织机构-->
+<!--				</div>-->
+<!--				<div class="box-tools pull-right">-->
+<!--				    <a type="button" class="btn btn-box-tool" href="javascript:void(0)" onclick="dept()" title="管理部门"><i class="fa fa-edit"></i></a>-->
+<!--					<button type="button" class="btn btn-box-tool" id="btnExpand" title="展开" style="display:none;"><i class="fa fa-chevron-up"></i></button>-->
+<!--					<button type="button" class="btn btn-box-tool" id="btnCollapse" title="折叠"><i class="fa fa-chevron-down"></i></button>-->
+<!--					<button type="button" class="btn btn-box-tool" id="btnRefresh" title="刷新部门"><i class="fa fa-refresh"></i></button>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class="ui-layout-content">-->
+<!--				<div id="tree" class="ztree"></div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
 	
 	<div class="ui-layout-center">
 		<div class="container-div">
@@ -62,21 +62,21 @@
 				</div>
 				
 		        <div class="btn-group-sm" id="toolbar" role="group">
-		        	<a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="system:user:add">
-		                <i class="fa fa-plus"></i> 新增
-		            </a>
-		             <a class="btn btn-primary single disabled" onclick="$.operate.editTab()" shiro:hasPermission="system:user:edit">
-			            <i class="fa fa-edit"></i> 修改
-			        </a>
-		            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:user:remove">
-		                <i class="fa fa-remove"></i> 删除
-		            </a>
-		            <a class="btn btn-info" onclick="$.table.importExcel()" shiro:hasPermission="system:user:import">
-			            <i class="fa fa-upload"></i> 导入
-			        </a>
-		            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:user:export">
-			            <i class="fa fa-download"></i> 导出
-			        </a>
+<!--		        	<a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="system:user:add">-->
+<!--		                <i class="fa fa-plus"></i> 新增-->
+<!--		            </a>-->
+<!--		             <a class="btn btn-primary single disabled" onclick="$.operate.editTab()" shiro:hasPermission="system:user:edit">-->
+<!--			            <i class="fa fa-edit"></i> 修改-->
+<!--			        </a>-->
+<!--		            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:user:remove">-->
+<!--		                <i class="fa fa-remove"></i> 删除-->
+<!--		            </a>-->
+<!--		            <a class="btn btn-info" onclick="$.table.importExcel()" shiro:hasPermission="system:user:import">-->
+<!--			            <i class="fa fa-upload"></i> 导入-->
+<!--			        </a>-->
+<!--		            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:user:export">-->
+<!--			            <i class="fa fa-download"></i> 导出-->
+<!--			        </a>-->
 		        </div>
 		        
 		        <div class="col-sm-12 select-table table-striped">
@@ -137,9 +137,9 @@
 		            field: 'loginName',
 		            title: '登录名称',
 		            sortable: true,
-		            formatter: function (value, row, index) {
-		                return '<a href="javascript:void(0)" onclick="$.operate.view(\'' + row.userId + '\')">' + value + '</a>';
-		            }
+		            // formatter: function (value, row, index) {
+		            //     return '<a href="javascript:void(0)" onclick="$.operate.view(\'' + row.userId + '\')">' + value + '</a>';
+		            // }
 		        },
 		        {
 		            field: 'userName',
@@ -147,7 +147,8 @@
 		        },
 		        {
 		            field: 'dept.deptName',
-		            title: '部门'
+		            title: '部门',
+					visible: false
 		        },
 		        {
 		            field: 'email',
@@ -179,10 +180,10 @@
 		                	var actions = [];
 			                actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editTab(\'' + row.userId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
 			                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.userId + '\')"><i class="fa fa-remove"></i>删除</a> ');
-			                var more = [];
-			                more.push("<a class='btn btn-default btn-xs " + resetPwdFlag + "' href='javascript:void(0)' onclick='resetPwd(" + row.userId + ")'><i class='fa fa-key'></i>重置密码</a> ");
-			                more.push("<a class='btn btn-default btn-xs " + editFlag + "' href='javascript:void(0)' onclick='authRole(" + row.userId + ")'><i class='fa fa-check-square-o'></i>分配角色</a>");
-			                actions.push('<a tabindex="0" class="btn btn-info btn-xs" role="button" data-container="body" data-placement="left" data-toggle="popover" data-html="true" data-trigger="hover" data-content="' + more.join('') + '"><i class="fa fa-chevron-circle-right"></i>更多操作</a>');
+			                // var more = [];
+			                // more.push("<a class='btn btn-default btn-xs " + resetPwdFlag + "' href='javascript:void(0)' onclick='resetPwd(" + row.userId + ")'><i class='fa fa-key'></i>重置密码</a> ");
+			                // more.push("<a class='btn btn-default btn-xs " + editFlag + "' href='javascript:void(0)' onclick='authRole(" + row.userId + ")'><i class='fa fa-check-square-o'></i>分配角色</a>");
+			                // actions.push('<a tabindex="0" class="btn btn-info btn-xs" role="button" data-container="body" data-placement="left" data-toggle="popover" data-html="true" data-trigger="hover" data-content="' + more.join('') + '"><i class="fa fa-chevron-circle-right"></i>更多操作</a>');
 			                return actions.join('');
 		            	} else {
 		                    return "";

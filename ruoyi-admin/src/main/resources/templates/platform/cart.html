@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>城乡产业交流平台</title><!--=== Favicon ===-->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"><!--=== All Plugins CSS ===-->
+    <link href="/static/css/plugins.css" rel="stylesheet"><!--=== All Vendor CSS ===-->
+    <link href="/static/css/vendor.css" rel="stylesheet"><!--=== Main Style CSS ===-->
+    <link href="/static/css/style.css" rel="stylesheet"><!-- Modernizer JS -->
+    <script src="/static/js/modernizr-2.8.3.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/static/js/html5shiv.min.js"></script>
+    <script src="/static/js/respond.min.js"></script><![endif]--></head>
+<body><!-- Start Header Area -->
+<header class="header-area"><!-- header top start -->
+    <div th:replace="~{platform/common::header-top}"></div>
+<!-- header top end --><!-- main menu start -->
+    <div class="main-menu-area sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main-menu">
+                        <div class="sticky-logo"><a href="index.html"><img src="/static/logo.png" alt="brand logo" style="height: 70px"
+                                                                          ></a></div>
+                        <!-- main menu navbar start -->
+                        <div th:replace="platform/common::mobile-menu"></div>
+
+                        <!-- main menu navbar end -->
+                    </div>
+                </div>
+                <div class="col-12 d-block d-lg-none">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- main menu end --></header><!-- end Header Area --><!-- main wrapper start -->
+<main><!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb"><h2>购物车</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index">主页</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">购物车</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- breadcrumb area end --><!-- cart main wrapper start -->
+    <div class="cart-main-wrapper pt-60 pb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12"><!-- Cart Table Area -->
+                    <div class="cart-table table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="pro-thumbnail">选项</th>
+
+                                <th class="pro-thumbnail">商品图片</th>
+                                <th class="pro-title">产品名</th>
+                                <th class="pro-price">价格</th>
+                                <th class="pro-quantity">数量</th>
+                                <th class="pro-subtotal">总价</th>
+                                <th class="pro-remove">删除</th>
+                            </tr>
+                            </thead>
+                            <tbody class="flag">
+                            <tr th:each="cart:${info}">
+                                <td id="id1" style="display: none">[[${cart.id}]]</td>
+
+                                <td id="id" style="display: none">[[${cart.product.id}]]</td>
+                                <td class="pro-remove"><input type="checkbox" style="width: 23px;height: 23px"></td>
+
+                                <td class="pro-thumbnail"><a href="#"><img class="img-fluid"
+                                                                           src="/static/picture/product-1.jpg"
+                                                                           th:src="${cart.product.imglist}"
+                                                                           alt="Product"></a></td>
+                                <td class="pro-title"><a href="#">[[${cart.product.name}]]</a></td>
+                                <td class="pro-price price"><span>$[[${cart.product.price}]]</span></td>
+                                <td class="pro-quantity">
+                                    <div class="pro-qty"><input type="text" value="1" th:value="${cart.number}"></div>
+                                </td>
+                                <td class="pro-subtotal"><span th:text="${cart.product.price * cart.number}">00.00</span></td>
+                                <td class="pro-remove">
+                                    <a href="#"><i class="fa fa-trash-o delete-btn" style="font-size: 27px"></i></a>
+                                </td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div><!-- Cart Update Option -->
+<!--                    <div class="cart-update-option d-block d-md-flex justify-content-between">-->
+<!--                        <div class="apply-coupon-wrapper">-->
+<!--                            <form action="#" method="post" class=" d-block d-md-flex"><input type="text"-->
+<!--                                                                                             placeholder="Enter Your Coupon Code"-->
+<!--                                                                                             required/="">-->
+<!--                                <button class="btn btn__bg btn__sqr">Apply Coupon</button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                        <div class="cart-update mt-sm-16"><a href="#" class="btn btn__bg btn__sqr">Update Cart</a></div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 ml-auto"><!-- Cart Calculation Area -->
+                    <div class="cart-calculator-wrapper">
+                        <div class="cart-calculate-items"><h3>购物车总价</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+<!--                                    <tr>-->
+<!--                                        <td>Sub Total</td>-->
+<!--                                        <td>$230</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td>Shipping</td>-->
+<!--                                        <td>$70</td>-->
+<!--                                    </tr>-->
+                                    <tr class="total">
+                                        <td>总计</td>
+                                        <td class="total-amount">$000</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <a href="/checkout"  class="btn btn__bg d-block">结算</a></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- cart main wrapper end --></main><!-- main wrapper end --><!--== Start Footer Area Wrapper ==-->
+<div class="scroll-top not-visible"><i class="fa fa-angle-up"></i></div><!-- Scroll to Top End -->
+<!--=======================Javascript============================--><!--=== All Vendor Js ===-->
+<script src="/static/js/vendor.js"></script><!--=== All Plugins Js ===-->
+<script src="/static/js/plugins.js"></script><!--=== Active Js ===-->
+<script src="/static/js/active.js"></script>
+
+<script>
+
+    var quantityButtons = document.querySelectorAll('.qtybtn');
+
+    // Loop through each quantity button
+    quantityButtons.forEach(function(button) {
+        // Add click event listener
+        button.addEventListener('click', function () {
+            // Get the parent <tr> element of the button
+            var parentRow = this.closest('tr');
+
+            // Get the price value from the corresponding cell
+            var priceCell = parentRow.querySelector('.pro-price span');
+            var price = parseFloat(priceCell.innerText.replace('$', ''));
+
+            // Get the input element
+            var inputElement = parentRow.querySelector('.pro-quantity input[type="text"]');
+            var inputValue = parseInt(inputElement.value);
+
+            // Increment or decrement based on the button clicked
+            // if (this.classList.contains('inc')) {
+            //     inputValue++;
+            // } else if (this.classList.contains('dec')) {
+            //     if (inputValue > 1) {
+            //         inputValue--;
+            //     }
+            // }
+
+            // Update the input value
+            inputElement.value = inputValue;
+
+            // Calculate the total
+            var total = price * inputValue;
+
+            // Update the total cell with the new value
+            var totalCell = parentRow.querySelector('.pro-subtotal span');
+            totalCell.innerText = '$' + total.toFixed(2);
+            var totalAmount = 0;
+
+            // 获取所有行
+            var tableBody = document.querySelector('.flag');
+            var rows = tableBody.querySelectorAll('tr');
+            // 遍历每一行
+            rows.forEach(function(row) {
+                // 检查行中复选框是否被选中
+                var rowCheckbox = row.querySelector('input[type="checkbox"]');
+                console.log(rowCheckbox)
+                if (rowCheckbox.checked) {
+                    // 获取行中的总金额
+                    var subtotalCell = row.querySelector('.pro-subtotal span');
+                    var subtotal = parseFloat(subtotalCell.innerText.replace('$', ''));
+                    // 将行的总金额加到总数中
+                    totalAmount += subtotal;
+                }
+            });
+
+            // 更新总金额单元格的内容
+            var totalAmountCell = document.querySelector('.total-amount');
+            totalAmountCell.innerText = '$' + totalAmount.toFixed(2);
+
+
+        });
+    });
+    // 获取总金额单元格
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    // 添加事件监听器到每个复选框
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            var totalAmount = 0;
+
+            // 获取所有行
+            var tableBody = document.querySelector('.flag');
+            var rows = tableBody.querySelectorAll('tr');
+            // 遍历每一行
+            rows.forEach(function(row) {
+                // 检查行中复选框是否被选中
+                var rowCheckbox = row.querySelector('input[type="checkbox"]');
+                console.log(rowCheckbox)
+                if (rowCheckbox.checked) {
+                    // 获取行中的总金额
+                    var subtotalCell = row.querySelector('.pro-subtotal span');
+                    var subtotal = parseFloat(subtotalCell.innerText.replace('$', ''));
+                    // 将行的总金额加到总数中
+                    totalAmount += subtotal;
+                }
+            });
+
+            // 更新总金额单元格的内容
+            var totalAmountCell = document.querySelector('.total-amount');
+            totalAmountCell.innerText = '$' + totalAmount.toFixed(2);
+        });
+    });
+
+    const checkoutbtn = document.querySelector('.btn__bg');
+
+    // 添加点击事件监听器
+    checkoutbtn.addEventListener('click', handlecheckout);
+
+
+    function processSelectedItems() {
+        // Get all the table rows in the tbody
+        const tableRows = document.querySelectorAll('.cart-table tbody tr');
+
+        // Create an empty array to store the selected items
+        const selectedItems = [];
+
+        // Iterate over each table row
+        tableRows.forEach((row) => {
+            // Check if the checkbox is selected
+            const checkbox = row.querySelector('input[type="checkbox"]');
+            if (checkbox.checked) {
+                // Get the ID and quantity of the selected item
+                const id = row.querySelector('#id').textContent;
+                const quantityInput = row.querySelector('.pro-quantity input');
+                const quantity = quantityInput.value;
+
+                // Create an object with the ID and quantity and add it to the selected items array
+                const selectedItem = {
+                    id: id,
+                    quantity: quantity
+                };
+                selectedItems.push(selectedItem);
+            }
+        });
+
+        // Send an AJAX request to the backend with the selected items
+        $.ajax({
+            type: 'POST',
+            url: '/checkoutpost',
+            contentType: 'application/json',
+            data: JSON.stringify(selectedItems),
+            success: function(response) {
+                // 处理成功响应
+                console.log('成功响应:', response);
+                window.location.href = '/checkout'
+            },
+            error: function(xhr, status, error) {
+                // 处理错误响应
+                console.log('错误响应:', error);
+            }
+        });
+        console.log(selectedItems)
+        // You can add code here to handle the AJAX response
+    }
+
+
+    $(document).on("click", ".delete-btn", function(e) {
+        e.preventDefault(); // 阻止默认行为
+
+        // 获取要删除的商品ID
+        var productId = $(this).closest("tr").find("#id1").text();
+        // 发起AJAX请求
+        $.ajax({
+            url: "/cartdelete/"+productId, // 后端处理删除请求的URL
+            type: "get",
+            dataType: "json",
+            contentType: "application/json",
+            // data: JSON.stringify({ productId: productId }), // 发送的数据，包含商品ID
+            success: function(response) {
+                // 成功处理响应后的操作，可能需要更新页面或其他操作
+                // 示例：重新加载页面
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                // 处理错误情况
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+
+
+    // 处理结算函数
+    function handlecheckout(event) {
+        event.preventDefault(); // 阻止默认的链接跳转行为
+
+        // 在这里添加处理结算逻辑
+        processSelectedItems();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="meta description" />
+    <title>城乡产业交流平台</title>
+    <!--=== Favicon ===-->
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <!--=== All Plugins CSS ===-->
+    <link href="/static/css/plugins.css" rel="stylesheet" />
+    <!--=== All Vendor CSS ===-->
+    <link href="/static/css/vendor.css" rel="stylesheet" />
+    <!--=== Main Style CSS ===-->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <!-- Modernizer JS -->
+    <script src="/static/js/modernizr-2.8.3.min.js"></script>
+    <!--[if lt IE 9
+      ]><script src="/static/js/html5shiv.min.js"></script>
+      <script src="/static/js/respond.min.js"></script
+    ><![endif]-->
+  </head>
+  <body>
+    <!-- Start Header Area -->
+    <header class="header-area">
+      <!-- header top start -->
+      <div th:replace="~{platform/common::header-top}"></div>
+      <!-- header top end --><!-- main menu start -->
+      <div class="main-menu-area sticky">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="main-menu">
+                <div class="sticky-logo">
+                  <a href=""
+                    ><img src="/static/logo.png" alt="brand logo" style="height: 70px"
+                  /></a>
+                </div>
+                <!-- main menu navbar start -->
+                <div th:replace="platform/common::mobile-menu"></div>
+                <!-- main menu navbar end -->
+              </div>
+            </div>
+            <div class="col-12 d-block d-lg-none">
+              <div class="mobile-menu"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- main menu end -->
+    </header>
+    <!-- end Header Area --><!-- main wrapper start -->
+    <main>
+      <!-- hero slider area start -->
+      <section class="hero-slider-area">
+        <div class="hero-slider-active slider-arrow-style">
+          <div class="single-slider hero-bg hero-bg__1 d-flex align-items-center" th:each="pro:${indexpro}">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="content-inner">
+                    <div class="slider-content">
+                      <h1>
+                        [[${pro.getName()}]]
+                      </h1>
+                      <p>[[${pro.getDes()}]]</p>
+
+                      <!--                      <p>We supply highly quality, premium organic products</p>-->
+                      <a href="shop.html" th:href="@{/productdetail/{id}(id=${pro.id})}" class="btn">立即购买</a>
+                    </div>
+                    <div class="slider-img">
+                      <img src="/static/picture/slide_2.jpg" th:src="${pro.getImgs()[0]}" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- hero slider area start --><!-- service features start -->
+      <section class="service-features pt-30">
+        <div class="container">
+          <div class="service-features-inner theme-color">
+            <div class="single-features-item">
+              <div class="features-icon">
+              </div>
+              <div class="features-content" style="width: 300px">
+                <h5>城乡交流平台</h5>
+                <p>数字技术是推进乡村振兴和现代化的关键因素。政府高度重视数字乡村发展，发布了《数字乡村发展行动计划》。</p>
+              </div>
+            </div>
+            <div class="single-features-item">
+              <div class="features-icon"></div>
+              <div class="features-content">
+                <h5>数字乡村发展</h5>
+                <p>政府提出了数字乡村发展目标和保障措施，加速数字技术在乡村建设中的应用。</p>
+              </div>
+            </div>
+            <div class="single-features-item">
+              <div class="features-icon"></div>
+              <div class="features-content">
+                <h5>城乡一体化</h5>
+                <p>创新促进城乡一体化，有利于带动农村经济发展和促进信息公平分配。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- popular category end --><!-- product tab area start -->
+      <section class="product-tab pt-60 pb-30">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="section-title text-center"><h2>热销产品</h2></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <!-- product tab menu start -->
+              <div class="product-tab-menu pb-30">
+              </div>
+              <!-- product tab menu end -->
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="tab_one">
+                  <div class="product-tab-wrapper">
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 col-sm-6" th:each="item,iterStat : ${pros}" th:if="${iterStat.index % 4 == 0 or iterStat.index == 0}">
+                        <div class="product-item mb-50">
+                          <div class="product-thumb">
+                            <a href="product-details.html" th:href="@{/productdetail/{id}(id=${item.id})}"
+                              ><img src="/static/picture/product-1.jpg" alt=""
+                                    th:src="${item.getImgs()[0]}"
+                            /></a>
+
+                          </div>
+                          <div class="product-content text-center">
+                            <div class="product-name">
+                              <h4 class="h5">
+                                <a href="product-details.html" th:href="@{/productdetail/{id}(id=${item.id})}">[[${item.getName()}]]</a>
+                              </h4>
+                            </div>
+                            <div class="price-box">
+                              <span class="regular-price">$[[${item.getPrice()}]]</span
+                              ><span class="old-price"><del></del></span>
+                            </div>
+                            <div class="product-action-link">
+<!--                              <a href="#" data-toggle="tooltip" title="Wishlist"-->
+<!--                                ><i class="ion-android-favorite-outline"></i></a>-->
+<!--                              <a href="#"-->
+<!--                                data-toggle="tooltip"-->
+<!--                                title="查看详情"-->
+<!--                                ><i class="ion-bag"></i></a>-->
+<!--                              <a href="#" data-toggle="tooltip" title="Compare"-->
+<!--                                ><i class="ion-ios-shuffle"></i-->
+<!--                              ></a>-->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- product tab area end --><!-- choose us and testimonial area start -->
+      <section class="bg-gray pt-60 pb-60">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="row">
+                <div class="col-12">
+                  <div class="section-title text-center">
+                    <h2>平台特色与创新</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="choose-us-wrapper">
+                    <div class="accordion" id="choose-us">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button
+                              class="accordio-heading"
+                              type="button"
+                              data-toggle="collapse"
+                              data-target="#collapseOne"
+                              aria-expanded="true"
+                              aria-controls="collapseOne"
+                            >
+                              <i class="ion-ribbon-b"></i> 分享健康农产品
+                            </button>
+                          </h5>
+                        </div>
+                        <div
+                          id="collapseOne"
+                          class="collapse show"
+                          aria-labelledby="headingOne"
+                          data-parent="#choose-us"
+                        >
+                          <div class="card-body">
+                            平台追求给您新鲜、健康、平价的购买体验，对各地区特色农产品进行充分调查，摘选出优质的商家和产品供您挑选。收集各地区美味小吃于一体，将正宗美味送货到家，您不必担心赶不上赏味最好时间啦。打开线上博览会，好产品一览无余。
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h5 class="mb-0">
+                            <button
+                              class="accordio-heading"
+                              type="button"
+                              data-toggle="collapse"
+                              data-target="#collapseTwo"
+                              aria-controls="collapseTwo"
+                            >
+                              <i class="ion-android-car"></i> 随时随地分享趣生活
+                            </button>
+                          </h5>
+                        </div>
+                        <div
+                          id="collapseTwo"
+                          class="collapse"
+                          aria-labelledby="headingTwo"
+                          data-parent="#choose-us"
+                        >
+                          <div class="card-body">
+                            满足您对农业生产、生活的好奇，如果您想了解农业劳作日常和产品精致的工艺过程，想远距离就能感受农村优美的风景特色和风土人情，就打开云游日记开启体验吧。
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h5 class="mb-0">
+                            <button
+                              class="accordio-heading"
+                              type="button"
+                              data-toggle="collapse"
+                              data-target="#collapseThree"
+                              aria-controls="collapseThree"
+                            >
+                              <i class="ion-university"></i> 创新型智慧分析屏
+                            </button>
+                          </h5>
+                        </div>
+                        <div
+                          id="collapseThree"
+                          class="collapse"
+                          aria-labelledby="headingThree"
+                          data-parent="#choose-us"
+                        >
+                          <div class="card-body">
+                            可视化数据屏功能，动态更新关注量和销售量排名，给您提供更直观的数据参考。
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 pt-md-60 pt-sm-60">
+              <div class="row">
+                <div class="col-12">
+                  <div class="section-title text-center">
+                    <h2>用户评价</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="testimonial-wrapper">
+                    <div class="testimonial-tab-menu">
+                    </div>
+                    <div class="testimonial-tab-wrapper">
+                      <div class="tab-content">
+                        <div class="tab-pane fade" id="testimonial_one">
+                          <div class="testimonial-content-inner">
+                            <p>
+                              使用方便，操作简单，内容很丰富，好评。
+                            </p>
+<!--                            <div class="ratings">-->
+<!--                              <span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span>-->
+<!--                            </div>-->
+<!--                            <div class="designation">-->
+<!--                              Raju Ahammad / <span>developer of HT</span>-->
+<!--                            </div>-->
+                          </div>
+                        </div>
+                        <div
+                          class="tab-pane fade active show"
+                          id="testimonial_two"
+                        >
+                          <div class="testimonial-content-inner">
+                            <p>
+                              使用方便，操作简单，内容很丰富，好评。
+
+                            </p>
+<!--                            <div class="ratings">-->
+<!--                              <span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span>-->
+<!--                            </div>-->
+<!--                            <div class="designation">-->
+<!--                              Jenifer brown / <span>manager of HT</span>-->
+<!--                            </div>-->
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="testimonial_three">
+                          <div class="testimonial-content-inner">
+                            <p>
+                       123
+                            </p>
+<!--                            <div class="ratings">-->
+<!--                              <span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span-->
+<!--                              ><span><i class="ion-android-star"></i></span>-->
+<!--                            </div>-->
+<!--                            <div class="designation">-->
+<!--                              erik jhonson / <span>designer of HT</span>-->
+<!--                            </div>-->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- banner statistic area end --><!-- latest news area start -->
+      <section
+        class="latest-news-area latest-news-area__style1 fix pt-60 pb-60 pt-sm-30"
+      >
+        <div class="container-fluid p-0">
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="section-title text-center">
+                <h2>云游日记</h2>
+              </div>
+            </div>
+          </div>
+          <!-- end section title -->
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="blog-slider slick-padding">
+                <div class="blog-item" th:each="blog:${blogs}">
+                  <div class="single-blog-item bg-gray">
+                    <div class="blog-img-container">
+                      <a
+                        href="blog-details.html" th:href="@{/blogdetail/{id}(id=${blog.id})}"
+                        class="blog-img-holder blog-img-holder__1" th:style="'background-image: url(' + ${blog.getImg()} + ')'"
+                      ></a>
+                    </div>
+                    <div class="post-info">
+                      <div class="post-date">
+                        <i class="ion-ios-calendar-outline"></i>
+                        <span th:text="${#dates.format(blog.getCreateTime(), 'yyyy-MM-dd HH:mm:ss')}"> </span>
+                      </div>
+                      <h5 class="post-title">
+                        <a href="blog-details.html" th:href="@{/blogdetail/{id}(id=${blog.id})}">[[${blog.title}]]</a>
+                      </h5>
+                      <p>
+                        [[${blog.des}]]
+                      </p>
+                      <a href="blog-details.html" class="read-more" th:href="@{/blogdetail/{id}(id=${blog.id})}"
+                        >查看详情</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- main wrapper end --><!-- Quick view modal start -->
+
+    <div class="scroll-top not-visible"><i class="fa fa-angle-up"></i></div>
+    <!-- Scroll to Top End --><!--=======================Javascript============================--><!--=== All Vendor Js ===-->
+    <script src="/static/js/vendor.js"></script>
+    <!--=== All Plugins Js ===-->
+    <script src="/static/js/plugins.js"></script>
+    <!--=== Active Js ===-->
+    <script src="/static/js/active.js"></script>
+  </body>
+</html>

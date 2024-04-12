@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.HistoryMapper">
+    
+    <resultMap type="History" id="HistoryResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="userId"    column="user_id"    />
+        <result property="blogId"    column="blog_id"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectHistoryVo">
+        select id, title, user_id, blog_id, create_time from history
+    </sql>
+
+    <select id="selectHistoryList" parameterType="History" resultMap="HistoryResult">
+        <include refid="selectHistoryVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title like concat('%', #{title}, '%')</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="blogId != null "> and blog_id = #{blogId}</if>
+        </where>
+    </select>
+    
+    <select id="selectHistoryById" parameterType="Long" resultMap="HistoryResult">
+        <include refid="selectHistoryVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertHistory" parameterType="History" useGeneratedKeys="true" keyProperty="id">
+        insert into history
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="blogId != null">blog_id,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="blogId != null">#{blogId},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHistory" parameterType="History">
+        update history
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="blogId != null">blog_id = #{blogId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHistoryById" parameterType="Long">
+        delete from history where id = #{id}
+    </delete>
+
+    <delete id="deleteHistoryByIds" parameterType="String">
+        delete from history where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ruoyi</groupId>
-    <artifactId>MovieRecommendationSystem</artifactId>
+    <artifactId>industry-exchange-platform</artifactId>
     <version>4.7.8</version>
 
     <name>ruoyi</name>

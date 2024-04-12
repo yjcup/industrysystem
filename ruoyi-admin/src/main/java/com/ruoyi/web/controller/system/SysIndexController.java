@@ -4,6 +4,13 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.system.domain.Blog;
+import com.ruoyi.system.domain.Product;
+import com.ruoyi.system.domain.SysOrder;
+import com.ruoyi.system.service.*;
+import com.ruoyi.system.service.impl.CartServiceImpl;
+import com.ruoyi.system.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,8 +27,6 @@ import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.ServletUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.framework.shiro.service.SysPasswordService;
-import com.ruoyi.system.service.ISysConfigService;
-import com.ruoyi.system.service.ISysMenuService;
 
 /**
  * 首页 业务处理
@@ -55,7 +60,7 @@ public class SysIndexController extends BaseController
         mmap.put("skinName", configService.selectConfigByKey("sys.index.skinName"));
         Boolean footer = Convert.toBool(configService.selectConfigByKey("sys.index.footer"), true);
         Boolean tagsView = Convert.toBool(configService.selectConfigByKey("sys.index.tagsView"), true);
-        mmap.put("footer", footer);
+        mmap.put("footer", false);
         mmap.put("tagsView", tagsView);
         mmap.put("mainClass", contentMainClass(footer, tagsView));
         mmap.put("copyrightYear", RuoYiConfig.getCopyrightYear());
@@ -125,12 +130,33 @@ public class SysIndexController extends BaseController
         CookieUtils.setCookie(response, "nav-style", style);
     }
 
+    @Autowired
+    private IBlogService blogService;
+
+    @Autowired
+    private ProductServiceImpl productService;
+
+
+    @Autowired
+    private ISysOrderService orderService;
+    @Autowired
+    private ISysUserService sysUserService;
+
+
     // 系统介绍
     @GetMapping("/system/main")
     public String main(ModelMap mmap)
     {
-        mmap.put("version", RuoYiConfig.getVersion());
-        return "main_v1";
+        List<SysUser> sysUsers = sysUserService.selectUserList(new SysUser());
+        mmap.put("usercount",sysUsers.size());
+        int size = orderService.selectSysOrderList(new SysOrder()).size();
+        mmap.put("ordercount",size);
+        int size1 = blogService.selectBlogList(new Blog()).size();
+        mmap.put("blogcount",size1);
+        int size2 = productService.selectProductList(new Product()).size();
+        mmap.put("procount",size2);
+        mmap.put("flag",false);
+        return "platform/chart";
     }
 
     // content-main class

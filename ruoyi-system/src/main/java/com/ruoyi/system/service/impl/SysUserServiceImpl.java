@@ -230,8 +230,13 @@ public class SysUserServiceImpl implements ISysUserService
     @Override
     public boolean registerUser(SysUser user)
     {
-        user.setUserType(UserConstants.REGISTER_USER_TYPE);
-        return userMapper.insertUser(user) > 0;
+
+        user.setUserType(UserConstants.SYSTEM_USER_TYPE);
+//        insertUserRole(user.getUserId(), new Long[]{100L});
+        int i = userMapper.insertUser(user);
+        SysUser sysUser = userMapper.selectUserByLoginName(user.getLoginName());
+        insertUserRole(sysUser.getUserId(), new Long[]{100L});
+        return i > 0;
     }
 
     /**

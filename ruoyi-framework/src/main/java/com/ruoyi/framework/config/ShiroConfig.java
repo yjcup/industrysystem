@@ -295,6 +295,29 @@ public class ShiroConfig
         // 设置前台网站不拦截
         filterChainDefinitionMap.put("/index","anon");
         filterChainDefinitionMap.put("/","anon");
+//        filterChainDefinitionMap.put("/cart","anon");
+        filterChainDefinitionMap.put("/chart", "anon");
+        filterChainDefinitionMap.put("/bloglist","anon");
+        filterChainDefinitionMap.put("/productlist","anon");
+
+//        filterChainDefinitionMap.put("/blogdetail/**","anon");
+        filterChainDefinitionMap.put("/aboutus","anon");
+        filterChainDefinitionMap.put("/checkout","anon");
+        filterChainDefinitionMap.put("/checkoutpost","anon");
+        filterChainDefinitionMap.put("/orderpost","anon");
+        filterChainDefinitionMap.put("/echart*","anon");
+        filterChainDefinitionMap.put("/userreg","anon");
+        filterChainDefinitionMap.put("/register","anon");
+        filterChainDefinitionMap.put("/layui/**","anon");
+        filterChainDefinitionMap.put("/city/**","anon");
+        filterChainDefinitionMap.put("/cartdelete/**","anon");
+
+
+        filterChainDefinitionMap.put("/static/**","anon");
+        filterChainDefinitionMap.put("/chart/**","anon");
+
+        filterChainDefinitionMap.put("/profile/**","anon");
+        filterChainDefinitionMap.put("/productdetail/**","anon");
 
         // 退出 logout地址，shiro去清除session
         filterChainDefinitionMap.put("/admin/logout", "logout");

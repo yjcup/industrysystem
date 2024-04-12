@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<script type="text/javascript" src="/chart/js/jquery.js"></script>
+<script type="text/javascript" src="/chart/js/echarts.min.js"></script>
+<script type="text/javascript" src="/chart/js/china.js"></script>
+<script type="text/javascript" src="/chart/js/map.js"></script>
+<script type="text/javascript" src="/chart/js/js.js"></script>
+<link rel="stylesheet" href="/chart/css/style.css">
+</head>
+<body>
+	<div class="head clearfix" th:if="${flag} ?: true">
+	<h1 class="pulll_left">城乡交流平台大数据</h1>
+		<div class="menu menu2 pulll_left">
+		<ul>      
+			<li><a href="/index">主页</a></li>
+			<li><a href="/productlist">农产品博览</a></li>
+			<li><a href="/bloglist">云游日记</a></li>
+			<li><a href="/cart">购物车</a></li>
+<!--			<li><a href="/aboutus">关于我们</a></li>-->
+		</ul>
+		</div>
+		<div class="time" id="showTime">2018/6/12 17:00:12</div>
+		
+	</div>
+	<div class="mainbox">
+	
+	<ul class="clearfix nav1">
+		<li style="width: 30%">
+		<div class="box">
+			<div class="tit">系统数据</div>
+			<div class="boxnav" style="height: 330px;">
+<div class="yqlist">
+            <ul class="clearfix">
+                              <li>
+                <div class="yq" id="yq">[[${procount}]]</div>
+                <span>已上架货品数</span></li>
+                              <li>
+                <div class="yq">[[${ordercount}]]</div>
+                <span>订单量</span></li>
+                              <li>
+                <div class="yq">[[${blogcount}]]</div>
+                <span>日记量</span></li>
+                              <li>
+                <div class="yq">[[${usercount}]]</div>
+                <span>用户数</span></li>
+                            </ul>
+          </div>
+			</div>
+			</div>
+			<div class="box">
+			<div class="tit">各市上架商品前10</div>
+			<div class="boxnav" >
+				<div class="" style="height: 406px" id="echart2"></div>
+				
+			</div>
+			</div>
+		</li>
+		<li style="width: 70%">
+		
+		<div class="box">
+			<div class="boxnav mapc" style="height: 550px; position: relative">
+			<div class="map" id="map"></div>
+			</div>
+			</div>
+		<div class="box">
+			<div class="tit">平台订单变化</div>
+			<div class="boxnav" style="height: 250px;"  id="echart3">
+				
+				
+			</div>
+			</div>
+		</li>
+		</ul>
+		
+		
+		
+		<script>
+var t = null;
+    t = setTimeout(time,1000);//開始运行
+    function time()
+    {
+       clearTimeout(t);//清除定时器
+       dt = new Date();
+		var y=dt.getFullYear();
+		var mt=dt.getMonth()+1;
+		var day=dt.getDate();
+       var h=dt.getHours();//获取时
+       var m=dt.getMinutes();//获取分
+       var s=dt.getSeconds();//获取秒
+       document.getElementById("showTime").innerHTML = y+"/"+mt+"/"+day+" "+h+":"+m+":"+s+"";
+       t = setTimeout(time,1000); //设定定时器，循环运行     
+    } 
+
+</script>
+	</div>
+</body>
+</html>

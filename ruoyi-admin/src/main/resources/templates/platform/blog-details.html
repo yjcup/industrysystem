@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>城乡产业交流平台</title><!--=== Favicon ===-->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"><!--=== All Plugins CSS ===-->
+    <link href="/static/css/plugins.css" rel="stylesheet"><!--=== All Vendor CSS ===-->
+    <link href="/static/css/vendor.css" rel="stylesheet"><!--=== Main Style CSS ===-->
+    <link href="/static/css/style.css" rel="stylesheet"><!-- Modernizer JS -->
+    <script src="/static/js/modernizr-2.8.3.min.js"></script>
+    <link href="//unpkg.com/layui@2.9.3/dist/css/layui.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="/static/js/html5shiv.min.js"></script>
+    <script src="/static/js/respond.min.js"></script><![endif]--></head>
+<body><!-- Start Header Area -->
+<header class="header-area"><!-- header top start -->
+    <div th:replace="~{platform/common::header-top}"></div>
+
+    <!-- header top end --><!-- main menu start -->
+    <div class="main-menu-area sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main-menu">
+                        <div class="sticky-logo"><a href="index.html"><img src="/static/logo.png" alt="brand logo" style="height: 70px"
+                                                                           ></a></div>
+                        <!-- main menu navbar start -->
+                        <div th:replace="platform/common::mobile-menu"></div>
+
+
+                        <!-- main menu navbar end -->
+
+                    </div>
+                </div>
+                <div class="col-12 d-block d-lg-none">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- main menu end --></header><!-- end Header Area --><!-- main wrapper start -->
+<main><!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb"><h2>详情</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">主页</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">云游计划详情</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- breadcrumb area end --><!-- blog main wrapper start -->
+    <div class="blog-main-wrapper pt-60 pb-60 pb-md-54 pb-sm-54">
+        <div class="container">
+            <div class="row">
+<!--                <div class="col-lg-3 order-2">-->
+<!--                    <div class="blog-sidebar-wrapper pt-md-60 pt-sm-60">-->
+<!--                        <div class="blog-sidebar"><h4 class="title">search</h4>-->
+<!--                            <div class="sidebar-serch-form">-->
+<!--                                <form action="#"><input type="text" class="search-field" placeholder="search here">-->
+<!--                                    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; single sidebar end &ndash;&gt;-->
+<!--                        <div class="blog-sidebar"><h4 class="title">categories</h4>-->
+<!--                            <ul class="blog-archive blog-category">-->
+<!--                                <li><a href="#">Health & beauty (10)</a></li>-->
+<!--                                <li><a href="#">Makeup (08)</a></li>-->
+<!--                                <li><a href="#">Skincare (07)</a></li>-->
+<!--                                <li><a href="#">Jewelry (14)</a></li>-->
+<!--                                <li><a href="#">fashion (10)</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>&lt;!&ndash; single sidebar end &ndash;&gt;-->
+<!--                        <div class="blog-sidebar"><h4 class="title">Blog Archives</h4>-->
+<!--                            <ul class="blog-archive">-->
+<!--                                <li><a href="#">January (10)</a></li>-->
+<!--                                <li><a href="#">February (08)</a></li>-->
+<!--                                <li><a href="#">March (07)</a></li>-->
+<!--                                <li><a href="#">April (14)</a></li>-->
+<!--                                <li><a href="#">May (10)</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>&lt;!&ndash; single sidebar end &ndash;&gt;-->
+<!--                        <div class="blog-sidebar"><h4 class="title">recent post</h4>-->
+<!--                            <div class="recent-post">-->
+<!--                                <div class="recent-post-item">-->
+<!--                                    <div class="product-thumb"><a href=""><img src="/static/picture/product-12.jpg"-->
+<!--                                                                               alt=""></a></div>-->
+<!--                                    <div class="recent-post-description">-->
+<!--                                        <div class="product-name"><h4><a href="product-details.html">natural fresh-->
+<!--                                            berries</a></h4>-->
+<!--                                            <p>march 10 2019</p></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="recent-post-item">-->
+<!--                                    <div class="product-thumb"><a href=""><img src="/static/picture/product-13.jpg"-->
+<!--                                                                               alt=""></a></div>-->
+<!--                                    <div class="recent-post-description">-->
+<!--                                        <div class="product-name"><h4><a href="product-details.html">organic fresh-->
+<!--                                            juice</a></h4>-->
+<!--                                            <p>march 18 2019</p></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="recent-post-item">-->
+<!--                                    <div class="product-thumb"><a href=""><img src="/static/picture/product-14.jpg"-->
+<!--                                                                               alt=""></a></div>-->
+<!--                                    <div class="recent-post-description">-->
+<!--                                        <div class="product-name"><h4><a href="product-details.html">100% organic-->
+<!--                                            food</a></h4>-->
+<!--                                            <p>march 14 2019</p></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; single sidebar end &ndash;&gt;-->
+<!--                        <div class="blog-sidebar"><h4 class="title">Tags</h4>-->
+<!--                            <ul class="blog-tags">-->
+<!--                                <li><a href="#">camera</a></li>-->
+<!--                                <li><a href="#">computer</a></li>-->
+<!--                                <li><a href="#">bag</a></li>-->
+<!--                                <li><a href="#">watch</a></li>-->
+<!--                                <li><a href="#">smartphone</a></li>-->
+<!--                                <li><a href="#">shoes</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>&lt;!&ndash; single sidebar end &ndash;&gt;</div>-->
+<!--                </div>-->
+                <div class="col-lg-12 order-1">
+                    <div class="blog-item-wrapper blog-item-wrapper__blog-grid blog-item-wrapper__blog-details">
+                        <div class="blog-img">
+                            <div class="blog-gallery-slider slider-arrow-style slider-arrow-style__style-2" >
+                                <div class="blog-single-slide" style="height: 700px"><img src="/static/picture/blog1.jpg" th:src="${blog.img}" alt=""></div>
+
+                            </div>
+                        </div>
+<!--                        <div class="blog-inner-content"><h5 class="cat-name"><a href="#">fruits</a></h5>-->
+                            <h3>[[${blog.title}]]</h3>
+                            <ul class="blog-meta">
+<!--                                <li>Post by: <span>Admin</span></li>-->
+                                <li>[[${#dates.format(blog.getCreateTime(), 'yyyy-MM-dd HH:mm:ss')}]]</li>
+                            </ul>
+                        <div  th:utext="${blog.conent}" ></div>
+
+                    </div>
+                    </div><!-- comment area start -->
+<!--                    <div class="comment-section pt-56"><h3>03 comment</h3>-->
+<!--                        <ul>-->
+<!--                            <li>-->
+<!--                                <div class="author-avatar"><img src="/static/picture/comment-icon.png" alt=""></div>-->
+<!--                                <div class="comment-body"><span class="reply-btn"><a href="#">reply</a></span><h5-->
+<!--                                        class="comment-author">admin</h5>-->
+<!--                                    <div class="comment-post-date">20 nov, 2018 at 9:30pm</div>-->
+<!--                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores adipisci-->
+<!--                                        optio ex, laboriosam facilis non pariatur itaque illo sunt?</p></div>-->
+<!--                            </li>-->
+<!--                            <li class="comment-children">-->
+<!--                                <div class="author-avatar"><img src="/static/picture/comment-icon.png" alt=""></div>-->
+<!--                                <div class="comment-body"><span class="reply-btn"><a href="#">reply</a></span><h5-->
+<!--                                        class="comment-author">admin</h5>-->
+<!--                                    <div class="comment-post-date">20 nov, 2018 at 9:30pm</div>-->
+<!--                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores adipisci-->
+<!--                                        optio ex, laboriosam facilis non pariatur itaque illo sunt?</p></div>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <div class="author-avatar"><img src="/static/picture/comment-icon.png" alt=""></div>-->
+<!--                                <div class="comment-body"><span class="reply-btn"><a href="#">reply</a></span><h5-->
+<!--                                        class="comment-author">admin</h5>-->
+<!--                                    <div class="comment-post-date">20 nov, 2018 at 9:30pm</div>-->
+<!--                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores adipisci-->
+<!--                                        optio ex, laboriosam facilis non pariatur itaque illo sunt?</p></div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>&lt;!&ndash; comment area end &ndash;&gt;&lt;!&ndash; start blog comment box &ndash;&gt;-->
+<!--                    <div class="blog-comment-wrapper pt-52"><h3>leave a reply</h3>-->
+<!--                        <p>Your email address will not be published. Required fields are marked *</p>-->
+<!--                        <form action="#">-->
+<!--                            <div class="comment-post-box">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-12"><label>comment</label><textarea name="commnet"-->
+<!--                                                                                        placeholder="Write a comment"></textarea>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-lg-4 col-md-4 col-sm-4 mb-sm-20"><label>Name</label><input-->
+<!--                                            type="text" class="coment-field" placeholder="Name"></div>-->
+<!--                                    <div class="col-lg-4 col-md-4 col-sm-4 mb-sm-20"><label>Email</label><input-->
+<!--                                            type="text" class="coment-field" placeholder="Email"></div>-->
+<!--                                    <div class="col-lg-4 col-md-4 col-sm-4 mb-sm-20"><label>Website</label><input-->
+<!--                                            type="text" class="coment-field" placeholder="Website"></div>-->
+<!--                                    <div class="col-12">-->
+<!--                                        <div class="coment-btn mt-20"><input class="btn btn__bg btn__sqr" type="submit"-->
+<!--                                                                             name="submit" value="post comment"></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>&lt;!&ndash; start blog comment box &ndash;&gt;</div>-->
+            </div>
+        </div>
+    </div><!-- blog main wrapper end --></main><!-- main wrapper end --><!--== Start Footer Area Wrapper ==-->
+<footer class="footer-wrapper"><!-- footer main area start -->
+    <div class="footer-main-area">
+        <div class="container">
+            <div class="footer-main-inner bdr-top pt-56 pb-60 pb-md-20 pb-sm-20" style="padding-top: 10px">
+                <div class="row">
+                    <div class="col-lg-9 col-md-6">
+                        <div class="footer-widget">
+                            <div class="footer-widget-body" style="display: flex; justify-content: center;">
+                                <div class="newsletter-desc" style="margin-top: 5%">
+                                    <button id="mc-submit" onclick="addblog()"><i class="ion-paper-airplane"></i>加入我的云游计划</button>
+                                    <div class="mailchimp-alerts">
+                                        <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                        <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                                        <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                                    </div><!-- mailchimp-alerts end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- footer main area end --><!-- footer bottom area start -->
+<div class="scroll-top not-visible"><i class="fa fa-angle-up"></i></div><!-- Scroll to Top End -->
+<!--=======================Javascript============================--><!--=== All Vendor Js ===-->
+<script src="/static/js/vendor.js"></script><!--=== All Plugins Js ===-->
+<script src="/static/js/plugins.js"></script><!--=== Active Js ===-->
+<script src="/static/js/active.js"></script>
+<script src="//unpkg.com/layui@2.9.3/dist/layui.js"></script>
+
+<script th:inline="javascript">
+    var blogid = [[${blog.id}]]
+function addblog(){
+    $.ajax({
+        url: "http://localhost/city/addblog/"+blogid,
+        method: "GET",
+        success: function(data){
+            // 请求成功时的处理逻
+            if(data.code==0){
+                layui.use(function () {
+                    var layer = layui.layer;
+                    layer.alert("添加成功😊！！！")
+                })            }
+            // 在这里你可以处理返回的数据
+        },
+        error: function(xhr, status, error){
+            // 请求失败时的处理逻辑
+            layui.use(function () {
+                var layer = layui.layer;
+                layer.alert("添加失败☹️！！！")
+            })        }
+    });
+}
+</script>
+</body>
+</html>

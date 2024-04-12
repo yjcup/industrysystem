@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>城乡产业交流平台</title><!--=== Favicon ===-->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"><!--=== All Plugins CSS ===-->
+    <link href="static/css/plugins.css" rel="stylesheet"><!--=== All Vendor CSS ===-->
+    <link href="static/css/vendor.css" rel="stylesheet"><!--=== Main Style CSS ===-->
+    <link href="static/css/style.css" rel="stylesheet"><!-- Modernizer JS -->
+    <script src="static/js/modernizr-2.8.3.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.min.js"></script>
+    <script src="static/js/respond.min.js"></script><![endif]--></head>
+<body><!-- Start Header Area -->
+<header class="header-area"><!-- header top start -->
+    <div th:replace="~{platform/common::header-top}"></div>
+
+
+    <!-- header top end --><!-- main menu start -->
+    <div class="main-menu-area sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main-menu">
+                        <div class="sticky-logo"><a href="index.html"><img src="/static/logo.png" alt="brand logo" style="height: 70px"
+                                                                           ></a></div>
+                        <!-- main menu navbar start -->
+                        <div th:replace="platform/common::mobile-menu"></div>
+                        <!-- main menu navbar end --></div>
+                </div>
+                <div class="col-12 d-block d-lg-none">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- main menu end --></header><!-- end Header Area --><!-- main wrapper start -->
+<main><!-- breadcrumb area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap text-center">
+                        <nav aria-label="breadcrumb"><h2>关于我们</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index">主页</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">关于我们</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- breadcrumb area end --><!-- about wrapper start -->
+    <div class="about-us-wrapper pt-60 pb-60 pb-lg-56 pt-sm-58">
+        <div class="container">
+            <div class="row"><!-- About Text Start -->
+                <div class="col-xl-6 col-lg-6">
+                    <div class="about-text-wrap"><h2><span>Provide Best</span>Product For You</h2>
+                        <p>近年来，数字技术成为促进乡村振兴和乡村现代化的重要因素，党和政府高度重视城乡数字平台建设，强调以数字化技术为导向、信息化平台为承载合力推进乡村建设是加快推进农村人居环境治理提升的强大助力，也是实施乡村全面振兴的重要任务，更是实现农村现代化的必然要求。2022年政府发布《数字乡村发展行动计划（2022-2025年）》提出了“十四五”时期数字乡村发展目标、重点任务和保障措施，对数字乡村工作进行全面部署。城乡发展一体化是新型城镇化建设的重要内容，是解决“三农”问题的根本途径，也是全面建成小康社会的关键。习总书记指出：“我们一定要抓紧工作、加大投入，努力在统筹城乡关系上取得重大突破，特别是要在破解城乡二元结构、推进城乡要素平等交换和公共资源均衡配置上取得重大突破，给农村发展注入新的动力。”以创新促进城乡一体化，有利于带动农村经济发展，拓宽农业发展新思路，城乡一体化模式的十大特征就包含了“搭建平台”，“发展产业”和“传承文化”，如何让乡村产品更好地走进城市，如何更好地让乡村文化走出去，如何更好地实现信息和资源的分配，搭建一个数字化交流平台是一个创新的回答。</p></div>
+                </div><!-- About Text End --><!-- About Image Start -->
+                <div class="col-xl-5 col-lg-6 ml-auto">
+                    <div class="about-image-wrap"><img src="static/picture/about.jpg" alt="About"></div>
+                </div><!-- About Image End --></div>
+        </div>
+    </div><!-- about wrapper end --><!-- team area start -->
+<div class="scroll-top not-visible"><i class="fa fa-angle-up"></i></div><!-- Scroll to Top End -->
+<!--=======================Javascript============================--><!--=== All Vendor Js ===-->
+<script src="static/js/vendor.js"></script><!--=== All Plugins Js ===-->
+<script src="static/js/plugins.js"></script><!--=== Active Js ===-->
+<script src="static/js/active.js"></script>
+</body>
+</html>

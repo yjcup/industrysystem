@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.BlogMapper">
+    
+    <resultMap type="Blog" id="BlogResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="title"    column="title"    />
+        <result property="des"    column="des"    />
+        <result property="conent"    column="conent"    />
+        <result property="click"    column="click"    />
+        <result property="img"    column="img"    />
+        <result property="address"    column="address"    />
+
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectBlogVo">
+        select id, user_id, title, des, conent, click, img, address,create_time from blog
+    </sql>
+
+    <select id="selectBlogList" parameterType="Blog" resultMap="BlogResult">
+        <include refid="selectBlogVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="address != null  and address != ''"> and  address like concat('%', #{address}, '%')</if>
+
+        </where>
+    </select>
+    
+    <select id="selectBlogById" parameterType="Long" resultMap="BlogResult">
+        <include refid="selectBlogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBlog" parameterType="Blog" useGeneratedKeys="true" keyProperty="id">
+        insert into blog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="title != null">title,</if>
+            <if test="des != null">des,</if>
+            <if test="conent != null">conent,</if>
+            <if test="click != null">click,</if>
+            <if test="img != null">img,</if>
+            <if test="address != null">address,</if>
+
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="title != null">#{title},</if>
+            <if test="des != null">#{des},</if>
+            <if test="conent != null">#{conent},</if>
+            <if test="click != null">#{click},</if>
+            <if test="img != null">#{img},</if>
+            <if test="address != null">#{address},</if>
+
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBlog" parameterType="Blog">
+        update blog
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="des != null">des = #{des},</if>
+            <if test="conent != null">conent = #{conent},</if>
+            <if test="click != null">click = #{click},</if>
+            <if test="img != null">img = #{img},</if>
+            <if test="address != null">address = #{address},</if>
+
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBlogById" parameterType="Long">
+        delete from blog where id = #{id}
+    </delete>
+
+    <delete id="deleteBlogByIds" parameterType="String">
+        delete from blog where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

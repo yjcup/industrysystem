@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="meta description" />
+    <title>城乡产业交流平台</title>
+    <!--=== Favicon ===-->
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <!--=== All Plugins CSS ===-->
+    <link href="/static/css/plugins.css" rel="stylesheet" />
+    <!--=== All Vendor CSS ===-->
+    <link href="/static/css/vendor.css" rel="stylesheet" />
+    <!--=== Main Style CSS ===-->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <!-- Modernizer JS -->
+    <script src="/static/js/modernizr-2.8.3.min.js"></script>
+
+
+    <link href="//unpkg.com/layui@2.9.3/dist/css/layui.css" rel="stylesheet">
+
+    <!--[if lt IE 9
+      ]><script src="/static/js/html5shiv.min.js"></script>
+      <script src="/static/js/respond.min.js"></script
+
+  ><![endif]-->
+  </head>
+  <body>
+    <!-- Start Header Area -->
+    <header class="header-area">
+      <!-- header top start -->
+      <div th:replace="~{platform/common::header-top}"></div>
+      <!-- header top end --><!-- main menu start -->
+      <div class="main-menu-area sticky">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="main-menu">
+                <div class="sticky-logo">
+                  <a href="index.html"
+                    ><img src="/static/logo.png" alt="brand logo" style="height: 70px"
+                  /></a>
+                </div>
+                <!-- main menu navbar start -->
+                <div th:replace="platform/common::mobile-menu"></div>
+                <!-- main menu navbar end -->
+              </div>
+            </div>
+            <div class="col-12 d-block d-lg-none">
+              <div class="mobile-menu"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- main menu end -->
+    </header>
+    <!-- end Header Area --><!-- main wrapper start -->
+    <main>
+      <!-- breadcrumb area start -->
+      <div class="breadcrumb-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="breadcrumb-wrap text-center">
+                <nav aria-label="breadcrumb">
+                  <h2>商品详情</h2>
+                  <ul class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="index">主页</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        商品详情
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- breadcrumb area end --><!-- page main wrapper start -->
+      <div class="product-details-wrapper pt-60 pb-60">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5 col-md-6">
+              <div
+                class="product-large-slider mb-20 slider-arrow-style slider-arrow-style__style-2"
+              >
+                  <div class="pro-large-img" th:each="img : ${pro.getImgs()}">
+                      <img src="/static/picture/product-details-img1.jpg" alt="" th:src="${img}" />
+                  </div>
+
+              </div>
+              <div
+                class="pro-nav slick-padding_2 slider-arrow-style slider-arrow-style__style-2"
+              >
+                  <div th:each="img : ${pro.getImgs()}" class="pro-nav-thumb">
+                  <img th:src="${img}" alt="" />
+              </div>
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-6">
+              <div class="product-details-des">
+                <div class="product-content-list">
+
+                  <div class="product-name">
+                    <h5 style="display: none" id="myid">[[${pro.id}]]</h5>
+                    <h4><a href="">[[${pro.name}]]</a></h4>
+                  </div>
+                  <div class="price-box">
+                    <span class="regular-price">$[[${pro.price}]]</span>
+<!--                    <span class="old-price"><del>$130.00</del></span>-->
+                  </div>
+                  <p>
+                   [[${pro.des}]]
+                  </p>
+                  <div class="action-link mb-20">
+                    <a
+                      href="JavaScript:;"
+                      data-toggle="tooltip"
+                      title="Add to cart"
+                      class="add-to-cart"
+                      onclick="addCart()"
+                      >加入购物车</a
+                    >
+<!--                    <a href="#" data-toggle="tooltip" title="Wishlist"-->
+<!--                      ><i class="ion-android-favorite-outline"></i></a-->
+<!--                    ><a href="#" data-toggle="tooltip" title="Compare"-->
+<!--                      ><i class="ion-ios-shuffle"></i-->
+<!--                    ></a>-->
+                  </div>
+                  <div class="quantity mb-20">
+                    <div class="pro-qty"><input  id="myInput" type="text" value="1" /></div>
+                  </div>
+                    <div class="availability mb-20">
+                        <h5>产地:</h5>
+                        <span>[[${pro.getProv()}]]</span>
+                    </div>
+                  <div class="availability mb-20">
+                    <h5>库存:</h5>
+                    <span>[[${pro.inventory}]]</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- product details reviews start -->
+                    <div class="product-details-reviews pt-60">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="product-review-info">
+                                    <div class="review-tab" style="flex: none">
+                                        <ul class="nav">
+                                            <li>
+                                                <a class="active" data-toggle="tab" href="#tab_one"
+                                                >详细介绍</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content reviews-tab" style="flex: auto">
+                                        <div class="tab-pane fade show active" id="tab_one">
+                                            <div class="tab-one">
+                                                <div  th:utext="${pro.getContent()}"></div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- product details reviews end -->
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </main>
+    <!-- main wrapper end --><!-- Quick view modal start -->
+    <!--== End Footer Area Wrapper ==--><!-- Scroll to top start -->
+    <div class="scroll-top not-visible"><i class="fa fa-angle-up"></i></div>
+    <!-- Scroll to Top End --><!--=======================Javascript============================--><!--=== All Vendor Js ===-->
+    <script src="/static/js/vendor.js"></script>
+    <!--=== All Plugins Js ===-->
+    <script src="/static/js/plugins.js"></script>
+    <!--=== Active Js ===-->
+    <script src="/static/js/active.js"></script>
+    <script src="//unpkg.com/layui@2.9.3/dist/layui.js"></script>
+<script th:inline="javascript">
+function addCart(){
+  var flag = [[${@permission.getFlag()}]];
+    if(flag==true) {
+      layui.use(function () {
+        var layer = layui.layer;
+        layer.alert("还未登陆，请登陆之后添加！！！")
+      })
+    }else{
+      var value = document.getElementById("myInput").value;
+      // console.log(user.primaryPrincipal.userId)
+      // console.log(value)
+      var text = document.getElementById('myid').textContent;
+
+      $.ajax({
+        url: "http://localhost/addcart/"+text+"/"+value,
+        method: "GET",
+        success: function(data){
+          // 请求成功时的处理逻
+          if(data.code==0){
+            console.log("goumai chenggong ")
+              layui.use(function () {
+                  var layer = layui.layer;
+                  layer.alert("添加成功😊！！！")})
+          }
+          // 在这里你可以处理返回的数据
+        },
+        error: function(xhr, status, error){
+          // 请求失败时的处理逻辑
+          console.error(xhr.responseText);
+        }
+      });
+
+
+    }
+}
+
+
+</script>
+  </body>
+</html>

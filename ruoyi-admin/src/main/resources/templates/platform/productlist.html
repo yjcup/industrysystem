@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="meta description" />
+    <title>城乡产业交流平台</title>
+    <!--=== Favicon ===-->
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <!--=== All Plugins CSS ===-->
+    <link href="/static/css/plugins.css" rel="stylesheet" />
+    <!--=== All Vendor CSS ===-->
+    <link href="/static/css/vendor.css" rel="stylesheet" />
+    <!--=== Main Style CSS ===-->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <!-- Modernizer JS -->
+    <script src="/static/js/modernizr-2.8.3.min.js"></script>
+    <!-- layui -->
+    <link href="//unpkg.com/layui@2.9.6/dist/css/layui.css" rel="stylesheet" />
+
+    <!--[if lt IE 9
+      ]><script src="/static/js/html5shiv.min.js"></script>
+      <script src="/static/js/respond.min.js"></script
+    ><![endif]-->
+  </head>
+  <body>
+    <!-- Start Header Area -->
+    <header class="header-area">
+      <!-- header top start -->
+      <div th:replace="~{platform/common::header-top}"></div>
+
+      <!-- header top end --><!-- main menu start -->
+      <div class="main-menu-area sticky">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="main-menu">
+                <div class="sticky-logo">
+                  <a href="index.html"
+                    ><img src="/static/logo.png" alt="brand logo" style="height: 70px"
+                  /></a>
+                </div>
+                <!-- main menu navbar start -->
+                <div th:replace="platform/common::mobile-menu"></div>
+                <!-- main menu navbar end -->
+              </div>
+            </div>
+            <div class="col-12 d-block d-lg-none">
+              <div class="mobile-menu"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- main menu end -->
+    </header>
+    <!-- end Header Area --><!-- main wrapper start -->
+    <main>
+      <!-- breadcrumb area start -->
+      <div class="breadcrumb-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="breadcrumb-wrap text-center">
+                <nav aria-label="breadcrumb">
+                  <h2>农产品博览</h2>
+                  <ul class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="index">主页</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      农产品博览
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- breadcrumb area end --><!-- page main wrapper start -->
+      <div class="shop-main-wrapper pt-60 pb-60">
+        <div class="container">
+          <div class="row">
+            <!-- shop main wrapper start -->
+            <div class="col-lg-12">
+              <div class="shop-product-wrapper">
+                <!-- shop product top wrap start -->
+                  <form class="layui-form" action="/productlist" method="post">
+                    <div class="layui-form-item" id="area-picker3">
+                      <div class="layui-form-label" style="width: 100px">选择地址:</div>
+                      <div class="layui-input-inline" style="width: 200px;">
+                        <select name="province" class="province-selector" lay-filter="province-3">
+                          <option value="">--选择省--</option>
+                        </select>
+                      </div>
+                      <div class="layui-input-inline" style="width: 200px;">
+                        <select name="city" class="city-selector" lay-filter="city-3">
+                          <option value="">--选择市--</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 100px;">开始时间:</label>
+                            <div class="layui-input-inline layui-input-wrap">
+                              <div class="layui-input-prefix">
+                                <i class="layui-icon layui-icon-date"></i>
+                              </div>
+                              <input type="text" name="startDate" id="date1" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                          </div>
+                            <label class="layui-form-label" style="width: 100px;">结束时间:</label>
+                            <div class="layui-input-inline layui-input-wrap">
+                              <div class="layui-input-prefix">
+                                <i class="layui-icon layui-icon-date"></i>
+                              </div>
+                              <input type="text" name="endDate" id="date2" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+
+                          </div>
+                      <button type="submit" class="layui-btn" >立即提交</button>
+                      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+                    </div>
+
+                  </form>
+                </div>
+                <div class="shop-product-wrap list-view row">
+                  <div class="col-lg-3 col-md-4 col-sm-6" th:each="pro:${pageinfo.getList()}" >
+                    <div class="product-list-item mb-30">
+                      <div class="product-thumb" style="max-height: 280px;max-width: 280px">
+                        <a href="product-details.html" th:href="@{/productdetail/{id}(id=${pro.id})}"
+                          ><img th:src="${pro.imgs[0]}" alt=""
+                        /></a>
+<!--                        <div class="quick-view-link">-->
+<!--                          <a-->
+<!--                            href="#"-->
+<!--                            data-toggle="modal"-->
+<!--                            data-target="#quick_view"-->
+<!--                            ><span data-toggle="tooltip" title="Quick view"-->
+<!--                              ><i class="ion-ios-eye-outline"></i></span-->
+<!--                          ></a>-->
+<!--                        </div>-->
+                      </div>
+                      <div class="product-content-list">
+<!--                        <div class="ratings">-->
+<!--                          <span><i class="ion-android-star"></i></span-->
+<!--                          ><span><i class="ion-android-star"></i></span-->
+<!--                          ><span><i class="ion-android-star"></i></span-->
+<!--                          ><span><i class="ion-android-star"></i></span-->
+<!--                          ><span><i class="ion-android-star"></i></span>-->
+<!--                        </div>-->
+                        <div class="product-name">
+                          <h4>
+                            <a href="product-details.html" th:href="@{/productdetail/{id}(id=${pro.id})}"
+                              >[[${pro.name}]]</a
+                            >
+                          </h4>
+                        </div>
+                        <div class="price-box">
+                          <span class="regular-price">[[${pro.price}]]</span>
+<!--                          <span class="old-price"><del>$130.00</del></span>-->
+                        </div>
+                        <p>
+                         [[${pro.des}]]
+                        </p>
+                        <div class="action-link">
+                          <a
+                            href="#" th:href="@{/productdetail/{id}(id=${pro.id})}"
+              
+                            class="add-to-cart"
+                            >查看详情</a
+                          >
+<!--                          <a href="#" data-toggle="tooltip" title="Wishlist"-->
+<!--                            ><i class="ion-android-favorite-outline"></i></a-->
+<!--                          ><a href="#" data-toggle="tooltip" title="Compare"-->
+<!--                            ><i class="ion-ios-shuffle"></i-->
+<!--                          ></a>-->
+                        </div>
+                      </div>
+                     </div>
+                    <!-- product list item start -->
+                  </div>
+                </div>
+                <!-- product item list end --><!-- start pagination area -->
+                <div class="paginatoin-area text-center mt-30" th:if="${flag} ?: true">
+                  <ul class="pagination-box">
+                    <li>
+                      <a class="Previous"  th:href="'/productlist?page='+${pageinfo.prePage}"  th:if="${pageinfo.hasPreviousPage}"
+                        ><i class="ion-ios-arrow-left"></i
+                      ></a>
+                    </li>
+                    <li th:each="nav:${pageinfo.navigatepageNums}" th:class="${nav==pageinfo.pageNum}?'active':''"><a href="#" th:href="'/productlist?page='+${nav}">[[${nav}]]</a></li>
+                    <li>
+                      <a class="Next" href="#" th:if="${pageinfo.hasNextPage}" th:href="'/productlist?page='+${pageinfo.nextPage}"
+                        ><i class="ion-ios-arrow-right"></i
+                      ></a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- end pagination area -->
+              </div>
+            </div>
+            <!-- shop main wrapper end -->
+          </div>
+        </div>
+      </div>
+      <!-- page main wrapper end -->
+    </main>
+    <!-- main wrapper end --><!-- Quick view modal start -->
+    <!-- Quick view modal end --><!--== Start Footer Area Wrapper ==-->
+    <!--== End Footer Area Wrapper ==--><!-- Scroll to top start -->
+    <div class="scroll-top not-visible"><i class="fa fa-angle-up"></i></div>
+    <!-- Scroll to Top End --><!--=======================Javascript============================--><!--=== All Vendor Js ===-->
+    <script src="/static/js/vendor.js"></script>
+    <!--=== All Plugins Js ===-->
+<!--    <script src="/static/js/plugins.js"></script>-->
+    <!--=== Active Js ===-->
+    <script src="/static/js/active.js"></script>
+    <script src="//unpkg.com/layui@2.9.8/dist/layui.js"></script>
+    <script>
+      layui.config({
+        base: '/layui/'
+        , version: '1.0'
+      });
+      //一般直接写在一个js文件中
+      layui.use(['layer', 'form', 'layarea'], function () {
+        var layer = layui.layer
+                , form = layui.form
+                , layarea = layui.layarea;
+        var laydate = layui.laydate;
+
+        // 日期
+        laydate.render({
+          elem: '#date1'
+        });
+        laydate.render({
+          elem: '#date2'
+        });
+        layarea.render({
+          elem: '#area-picker3',
+          change: function (res) {
+            //选择结果
+            console.log(res);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

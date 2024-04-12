@@ -17,6 +17,8 @@ function register() {
     $.modal.loading($("#btnSubmit").data("loading"));
     var username = $.common.trim($("input[name='username']").val());
     var password = $.common.trim($("input[name='password']").val());
+    var phonenumber = $.common.trim($("input[name='phonenumber']").val());
+
     var validateCode = $("input[name='validateCode']").val();
     $.ajax({
         type: "post",
@@ -24,7 +26,8 @@ function register() {
         data: {
             "loginName": username,
             "password": password,
-            "validateCode": validateCode
+            "validateCode": validateCode,
+            "phonenumber":phonenumber
         },
         success: function(r) {
             if (r.code == web_status.SUCCESS) {

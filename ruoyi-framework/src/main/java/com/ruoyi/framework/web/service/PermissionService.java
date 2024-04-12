@@ -3,6 +3,8 @@ package com.ruoyi.framework.web.service;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+
+import com.ruoyi.common.utils.ShiroUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -37,6 +39,12 @@ public class PermissionService
     {
         return isPermitted(permission) ? StringUtils.EMPTY : NOACCESS;
     }
+
+
+    public boolean getFlag(){
+        return ShiroUtils.getSysUser() == null;
+    }
+
 
     /**
      * 验证用户是否不具备某权限，与 hasPermi逻辑相反。无权限返回hidden用于前端隐藏（如需返回Boolean使用isLacksPermitted）
