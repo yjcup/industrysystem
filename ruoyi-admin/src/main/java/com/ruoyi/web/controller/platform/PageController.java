@@ -5,12 +5,14 @@ import com.github.pagehelper.PageInfo;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.utils.ShiroUtils;
+import com.ruoyi.system.controller.WordCount;
 import com.ruoyi.system.domain.*;
 import com.ruoyi.system.service.IBlogService;
 import com.ruoyi.system.service.ICartService;
 import com.ruoyi.system.service.ISysOrderService;
 import com.ruoyi.system.service.ISysUserService;
 import com.ruoyi.system.service.impl.CartServiceImpl;
+import com.ruoyi.system.service.impl.ExpositionServiceImpl;
 import com.ruoyi.system.service.impl.HistoryServiceImpl;
 import com.ruoyi.system.service.impl.ProductServiceImpl;
 import io.swagger.models.auth.In;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -36,6 +39,9 @@ public class PageController {
     @Autowired
     private CartServiceImpl cartService;
 
+
+    @Autowired
+    private ExpositionServiceImpl expositionService;
 
 
 
@@ -69,9 +75,18 @@ public class PageController {
         if(blogs.size()>3){
             blogs = blogs.subList(0,3);
         }
+
+        Exposition exposition = new Exposition();
+        exposition.setStatus("1");
+        List<Exposition> expositions = expositionService.selectExpositionList(exposition);
+        List<Exposition> expositions1 = expositions.subList(0, Math.min(expositions.size(), 4));
+
+
+
         System.out.println(productPluses1.size());
         modelMap.put("pros",productPluses2);
-        modelMap.put("indexpro",productPluses1);
+//        modelMap.put("indexpro",productPluses1);
+        modelMap.put("exps",expositions1);
         modelMap.put("blogs",blogs);
         return "platform/index";
     }
@@ -156,7 +171,7 @@ public class PageController {
 
 
     @GetMapping("/chart")
-    public String getChart(ModelMap modelMap) {
+    public String getChart(ModelMap modelMap) throws IOException {
         List<SysUser> sysUsers = sysUserService.selectUserList(new SysUser());
         modelMap.put("usercount",sysUsers.size());
         int size = orderService.selectSysOrderList(new SysOrder()).size();
@@ -165,6 +180,20 @@ public class PageController {
         modelMap.put("blogcount",size1);
         int size2 = productService.selectProductList(new Product()).size();
         modelMap.put("procount",size2);
+
+        List<Blog> blogs = blogService.selectBlogList(new Blog());
+        StringBuffer sb = new StringBuffer();
+        for(Blog blog :blogs){
+            sb.append(blog.getTitle()).append(" ");
+        }
+        List<Map.Entry<String, Integer>> entries = WordCount.wordFrequency(sb.toString());
+        for (Map.Entry<String, Integer> entry : entries) {
+            entry.setValue(entry.getValue() * 10); // 这里假设放大10倍
+        }
+        List<Map.Entry<String, Integer>> entries1 = entries.subList(0, Math.min(entries.size(), 5));
+        System.out.println(entries1);
+        modelMap.put("topFourEntries",entries1);
+        System.out.println(entries);
         return "platform/chart";
     }
 

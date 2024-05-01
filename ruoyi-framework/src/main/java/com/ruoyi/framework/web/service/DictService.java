@@ -1,6 +1,11 @@
 package com.ruoyi.framework.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.ruoyi.system.domain.Exposition;
+import com.ruoyi.system.mapper.ExpositionMapper;
+import org.apache.logging.log4j.message.ReusableMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.common.core.domain.entity.SysDictData;
@@ -31,6 +36,27 @@ public class DictService
     {
         return dictTypeService.selectDictDataByType(dictType);
     }
+
+
+    @Autowired
+    private ExpositionMapper expositionMapper;
+
+    public List<SysDictData> getExpType(){
+        Exposition exposition = new Exposition();
+        exposition.setStatus("1");
+        List<Exposition> expositions = expositionMapper.selectExpositionList(exposition);
+        List<SysDictData> list = new ArrayList<>();
+        for(Exposition ex:expositions){
+            SysDictData data = new SysDictData();
+            data.setDictLabel(ex.getName());
+            data.setDictValue(String.valueOf(ex.getId()));
+            list.add(data);
+        }
+        return list;
+    }
+
+
+
 
     /**
      * 根据字典类型和字典键值查询字典数据信息

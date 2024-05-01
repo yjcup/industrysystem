@@ -28,7 +28,7 @@
 	<div class="mainbox">
 	
 	<ul class="clearfix nav1">
-		<li style="width: 30%">
+		<li style="width: 22%">
 		<div class="box">
 			<div class="tit">系统数据</div>
 			<div class="boxnav" style="height: 330px;">
@@ -58,7 +58,7 @@
 			</div>
 			</div>
 		</li>
-		<li style="width: 70%">
+		<li style="width: 56%">
 		
 		<div class="box">
 			<div class="boxnav mapc" style="height: 550px; position: relative">
@@ -68,9 +68,39 @@
 		<div class="box">
 			<div class="tit">平台订单变化</div>
 			<div class="boxnav" style="height: 250px;"  id="echart3">
-				
-				
 			</div>
+			</div>
+		</li>
+		<li style="width: 22%">
+			<div class="box">
+				<div class="tit">平台登录次数</div>
+				<div class="boxnav" id="echart4" style="height: 200px;">
+
+				</div>
+			</div>
+			<div class="box">
+				<div class="tit">商品种类占比</div>
+				<div class="boxnav" style="height: 250px;" id="echart5" >
+
+
+				</div>
+			</div>
+			<div class="box" style="">
+				<div class="tit">本月热度话题</div>
+				<div class="title-nav">
+					<div class="top5-ul">
+						<ul>
+							<li th:each="entry, entryStat : ${topFourEntries}" >
+								<span th:text="${entryStat.index + 1}"></span>
+								<span th:text="${entry.value}"></span>
+								<span th:text="${entry.key}"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				</div>
 			</div>
 		</li>
 		</ul>

@@ -2,15 +2,19 @@ package com.ruoyi.system.controller;
 
 import com.ruoyi.system.domain.GeoData;
 import com.ruoyi.system.domain.Product;
+import com.ruoyi.system.domain.SysLogininfor;
 import com.ruoyi.system.domain.SysOrder;
 import com.ruoyi.system.service.IProductService;
+import com.ruoyi.system.service.ISysLogininforService;
 import com.ruoyi.system.service.ISysOrderService;
+import com.ruoyi.web.controller.system.SysLoginController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -112,6 +116,63 @@ public class EchartController {
         }
         return list;
     }
+
+    @Autowired
+    private ISysLogininforService logininforService;
+
+    @GetMapping("/echart5")
+    public Map<String, Object> echart5(){
+        Map<String, Object> map = new HashMap<>();
+        List<String> res1 = new ArrayList<>();
+        List<Integer> res2 = new ArrayList<>();
+
+        Date currentDate = new Date();
+        // 创建日历对象，并设置为当前时间
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        List<SysLogininfor> sysLogininfors = logininforService.selectLogininforList(new SysLogininfor());
+        // 循环获取前4天的每天的访问记录数量
+        for (int i = 0; i < 4; i++) {
+            // 将日期格式化为 "4月23日" 的形式
+            SimpleDateFormat dateFormat = new SimpleDateFormat("M月dd日");
+            String dateString = dateFormat.format(calendar.getTime());
+
+            // 设置当天的开始时间和结束时间
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            Date startTime = calendar.getTime();
+            calendar.set(Calendar.HOUR_OF_DAY, 23);
+            calendar.set(Calendar.MINUTE, 59);
+            calendar.set(Calendar.SECOND, 59);
+            Date endTime = calendar.getTime();
+
+            // 查询当天的访问记录数量
+            int loginCount = 0;
+            for (SysLogininfor loginInfo : sysLogininfors) {
+                Date loginTime = loginInfo.getLoginTime();
+                if (loginTime.after(startTime) && loginTime.before(endTime)) {
+                    loginCount++;
+                }
+            }
+
+            // 将日期和访问记录数量放入结果集
+            res1.add(dateString);
+            res2.add(loginCount);
+
+            // 将日期往前推一天
+            calendar.add(Calendar.DATE, -1);
+        }
+
+        map.put("data1", res1);
+        map.put("data2", res2);
+        return map;
+    }
+
+
+
+
+
 
 
     // 从省份信息中提取市的名称

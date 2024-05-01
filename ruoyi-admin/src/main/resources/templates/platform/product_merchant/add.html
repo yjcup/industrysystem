@@ -69,7 +69,14 @@
                     </select>
                 </div>
 
-
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">商品所属博览会：</label>
+                    <div class="col-sm-8">
+                        <select name="expId" class="form-control m-b" th:with="type=${@dict.getExpType()}">
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                        </select>
+                    </div>
+                </div>
 
 
 <!--                <div class="col-sm-8">-->

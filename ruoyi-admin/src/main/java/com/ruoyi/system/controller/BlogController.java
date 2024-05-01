@@ -45,7 +45,7 @@ public class BlogController extends BaseController
      * 查询游玩日记管理列表
      */
     @RequiresPermissions("platform:blog:list")
-    @PostMapping("/list")
+        @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(Blog blog)
     {

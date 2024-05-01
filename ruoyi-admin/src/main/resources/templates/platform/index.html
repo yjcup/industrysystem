@@ -59,22 +59,23 @@
       <!-- hero slider area start -->
       <section class="hero-slider-area">
         <div class="hero-slider-active slider-arrow-style">
-          <div class="single-slider hero-bg hero-bg__1 d-flex align-items-center" th:each="pro:${indexpro}">
+          <div class="single-slider hero-bg hero-bg__1 d-flex align-items-center" th:each="pro:${exps}">
             <div class="container">
               <div class="row">
                 <div class="col-12">
                   <div class="content-inner">
                     <div class="slider-content">
-                      <h1>
+                      <img src="/static/picture/slide_2.jpg" th:src="${pro.getImg()}" alt=""  />
+
+                      <h1 style="margin-top: 30px">
                         [[${pro.getName()}]]
                       </h1>
-                      <p>[[${pro.getDes()}]]</p>
-
                       <!--                      <p>We supply highly quality, premium organic products</p>-->
-                      <a href="shop.html" th:href="@{/productdetail/{id}(id=${pro.id})}" class="btn">立即购买</a>
+                      <a href="shop.html" th:href="@{/productdetail/{id}(id=${pro.id})}" class="btn" style="margin-top: 30px">浏览</a>
                     </div>
                     <div class="slider-img">
-                      <img src="/static/picture/slide_2.jpg" th:src="${pro.getImgs()[0]}" alt="" />
+                      <p style="font-size: 30px">        [[${pro.getDes()}]]</p>
+
                     </div>
                   </div>
                 </div>
@@ -134,10 +135,9 @@
                       <div class="col-lg-3 col-md-4 col-sm-6" th:each="item,iterStat : ${pros}" th:if="${iterStat.index % 4 == 0 or iterStat.index == 0}">
                         <div class="product-item mb-50">
                           <div class="product-thumb">
-                            <a href="product-details.html" th:href="@{/productdetail/{id}(id=${item.id})}"
-                              ><img src="/static/picture/product-1.jpg" alt=""
-                                    th:src="${item.getImgs()[0]}"
-                            /></a>
+                            <a href="product-details.html" th:href="@{/productdetail/{id}(id=${item.id})}">
+                              <img src="/static/picture/product-1.jpg" alt="" th:src="${item.getImgs()[0]}"/>
+                            </a>
 
                           </div>
                           <div class="product-content text-center">

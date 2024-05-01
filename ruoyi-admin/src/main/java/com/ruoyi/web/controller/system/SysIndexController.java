@@ -1,10 +1,13 @@
 package com.ruoyi.web.controller.system;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ruoyi.system.controller.WordCount;
 import com.ruoyi.system.domain.Blog;
 import com.ruoyi.system.domain.Product;
 import com.ruoyi.system.domain.SysOrder;
@@ -145,8 +148,7 @@ public class SysIndexController extends BaseController
 
     // 系统介绍
     @GetMapping("/system/main")
-    public String main(ModelMap mmap)
-    {
+    public String main(ModelMap mmap) throws IOException {
         List<SysUser> sysUsers = sysUserService.selectUserList(new SysUser());
         mmap.put("usercount",sysUsers.size());
         int size = orderService.selectSysOrderList(new SysOrder()).size();
@@ -155,6 +157,19 @@ public class SysIndexController extends BaseController
         mmap.put("blogcount",size1);
         int size2 = productService.selectProductList(new Product()).size();
         mmap.put("procount",size2);
+        List<Blog> blogs = blogService.selectBlogList(new Blog());
+        StringBuffer sb = new StringBuffer();
+        for(Blog blog :blogs){
+            sb.append(blog.getTitle()).append(" ");
+        }
+        List<Map.Entry<String, Integer>> entries = WordCount.wordFrequency(sb.toString());
+        for (Map.Entry<String, Integer> entry : entries) {
+            entry.setValue(entry.getValue() * 10); // 这里假设放大10倍
+        }
+        List<Map.Entry<String, Integer>> entries1 = entries.subList(0, Math.min(entries.size(), 5));
+        System.out.println(entries1);
+        mmap.put("topFourEntries",entries1);
+        System.out.println(entries);
         mmap.put("flag",false);
         return "platform/chart";
     }

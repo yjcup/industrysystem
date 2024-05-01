@@ -1,5 +1,7 @@
 $(function () {
     map();
+// 在页面加载完成后，手动触发工具提示的显示
+// 在页面加载完成后，手动触发工具提示的显示
 
     function map() {
         var myChart = echarts.init(document.getElementById('map'));
@@ -236,7 +238,8 @@ $(function () {
                     map: 'china',
                     label: {
                         emphasis: {
-                            show: false
+                            show: false,
+
                         }
                     },
                     roam: false,
@@ -263,8 +266,14 @@ $(function () {
                     label: {
                         normal: {
                             formatter: '{b}',
-                            position: 'right',
-                            show: false
+                            position: 'left',
+                            show: true,
+                            color: '#fff',
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)', // 添加背景颜色
+                            borderRadius: 5, // 设置边框圆角半径
+                            padding: [5, 10], // 设置标签内边距
+                            borderWidth: 1, // 设置边框宽度
+                            borderColor: '#ccc' // 设置边框颜色
                         },
                         emphasis: {
                             show: true

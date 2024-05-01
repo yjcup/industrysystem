@@ -48,6 +48,16 @@ public class Product extends BaseEntity
     private String prov;
 
 
+    private Long expId;
+
+    public Long getExpId() {
+        return expId;
+    }
+
+    public void setExpId(Long expId) {
+        this.expId = expId;
+    }
+
     private String content;
 
     public String getContent() {
