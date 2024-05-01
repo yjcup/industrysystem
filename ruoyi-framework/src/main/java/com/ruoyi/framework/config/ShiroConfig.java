@@ -299,6 +299,7 @@ public class ShiroConfig
         filterChainDefinitionMap.put("/chart", "anon");
         filterChainDefinitionMap.put("/bloglist","anon");
         filterChainDefinitionMap.put("/productlist","anon");
+        filterChainDefinitionMap.put("/exp/**","anon");
 
 //        filterChainDefinitionMap.put("/blogdetail/**","anon");
         filterChainDefinitionMap.put("/aboutus","anon");

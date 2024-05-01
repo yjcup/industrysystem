@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ruoyi.system.domain.Exposition;
 import com.ruoyi.system.mapper.ExpositionMapper;
+import org.apache.commons.math3.analysis.function.Exp;
 import org.apache.logging.log4j.message.ReusableMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,10 @@ public class DictService
             data.setDictValue(String.valueOf(ex.getId()));
             list.add(data);
         }
+        SysDictData data = new SysDictData();
+        data.setDictValue("0");
+        data.setDictLabel("无");
+        list.add(0,data);
         return list;
     }
 

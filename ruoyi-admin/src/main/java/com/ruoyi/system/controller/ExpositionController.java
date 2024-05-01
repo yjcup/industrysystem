@@ -100,6 +100,7 @@ public class ExpositionController extends BaseController
     @ResponseBody
     public AjaxResult addSave(Exposition exposition)
     {
+        exposition.setStatus("0");
         exposition.setUserId(ShiroUtils.getUserId());
         return toAjax(expositionService.insertExposition(exposition));
     }

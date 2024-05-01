@@ -7,6 +7,7 @@ import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.utils.ShiroUtils;
 import com.ruoyi.system.controller.WordCount;
 import com.ruoyi.system.domain.*;
+import com.ruoyi.system.mapper.ExpositionMapper;
 import com.ruoyi.system.service.IBlogService;
 import com.ruoyi.system.service.ICartService;
 import com.ruoyi.system.service.ISysOrderService;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import oshi.jna.platform.mac.SystemB;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -168,6 +170,32 @@ public class PageController {
     @Autowired
     private ISysUserService sysUserService;
 
+
+    @Autowired
+    private ExpositionMapper expositionMapper ;
+
+    @GetMapping("/exp/{id}")
+    public String exp(@PathVariable Long id,ModelMap modelMap){
+        Product product = new Product();
+        product.setStatus("1");
+        product.setExpId(id);
+        List<Product> products = productService.selectProductList(product);
+        List<ProductPlus> productPluses = new ArrayList<>();
+        for(Product pro:products){
+            ProductPlus productPlus = new ProductPlus();
+            BeanUtils.copyProperties(pro,productPlus);
+            List<String> list = Arrays.asList(pro.getImglist().split(","));
+            productPlus.setImgs(list);
+            productPluses.add(productPlus);
+        }
+        Exposition exposition = expositionService.selectExpositionById(id);
+        modelMap.put("exp",exposition);
+        PageInfo<ProductPlus> pageInfo = new PageInfo<>(productPluses);
+        modelMap.put("pageinfo",pageInfo);
+        System.out.println(pageInfo);
+        modelMap.put("flag",false);
+        return "platform/productlist";
+    }
 
 
     @GetMapping("/chart")
