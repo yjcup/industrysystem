@@ -105,6 +105,7 @@
         $(".file-upload").each(function (i) {
             var val = $("input[name='" + this.id + "']").val()
             var valarr = val.split(",")
+            console.log(valarr)
             $(this).fileinput({
                 'uploadUrl': ctx + 'common/upload',
                 initialPreviewAsData: true,

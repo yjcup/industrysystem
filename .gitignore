@@ -4,13 +4,13 @@
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
-
+/sql/
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ######################################################################
 # IDE
-
+LICENSE
 ### STS ###
 .apt_generated
 .classpath
